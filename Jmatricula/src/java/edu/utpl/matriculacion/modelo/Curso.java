@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.utpl.matriculacion.modelo;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-/**
- *
- * @author JorgeLuis
- */
 @Entity
 public class Curso implements Serializable {
 
