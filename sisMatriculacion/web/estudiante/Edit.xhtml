@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- -->
+    <f:metadata>
+        <f:viewParam name="id" value="#{estudianteController.estudianteId}"/>
+    </f:metadata>
+
+    <ui:composition template="/layout/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditEstudianteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form id="formEditarEstudiante" prependId="false">  
+                <!-- propendId para que te dé el id del componente que te lanza el error-->
+                <p:panel  
+                    header="#{estudianteController.current.id  != null ? bundle['ListEstudianteEditLink'] : bundle['ListEstudianteCreateLink']}" id="editPanelEstudiante">
+
+                    <p:panelGrid columns="2">
+
+                        <h:outputLabel value="#{bundle.ListEstudianteTitle_dni}"/>
+                        <h:panelGroup>
+                            <p:inputText id="dni" value="#{estudianteController.current.dni}" 
+                                         required="true" label="#{bundle.ListEstudianteTitle_dni}"/>
+                            <p:message for="dni"/>
+                        </h:panelGroup>
+                        <h:outputLabel value="#{bundle.ListEstudianteTitle_nombres}"/>
+                        <h:panelGroup>
+                            <p:inputText id="name" value="#{estudianteController.current.nombres}" 
+                                         required="true" label="#{bundle.ListEstudianteTitle_nombres}"/>
+                            <p:message for="name"/>
+                        </h:panelGroup>
+
+                        <h:outputLabel value="#{bundle.ListEstudianteTitle_apellidos}"/>
+                        <h:panelGroup>
+                            <p:inputText id="surname" value="#{estudianteController.current.apellidos}" 
+                                         required="true" label="#{bundle.ListEstudianteTitle_apellidos}"/>
+                            <p:message for="surname"/>
+                        </h:panelGroup>
+
+                        <h:outputLabel value="#{bundle.ListEstudianteTitle_genero}"/>
+                        <h:panelGroup>
+                            <p:selectOneMenu id="_fuelType" value="#{estudianteController.current.genero}" effect="fade" required="true">  
+                                <f:selectItems value="#{typeListController.fuelTypeList}" var="_genero" itemLabel="#{bundle[fuelType]}" itemValue="#{_genero}"/>  
+                            </p:selectOneMenu>
+
+                        </h:panelGroup>
+
+                        <h:outputLabel value="#{bundle.ListEstudianteTitle_fechaNacimiento}"/>
+                        <h:panelGroup>
+                            <p:calendar id="dateBirth" pattern="dd/MM/yyyy" navigator="true" showOn="button" value="#{estudianteController.current.fechaNacimiento}" 
+                                        label="#{bundle.ListEstudianteTitle_fechaNacimiento}">
+
+
+                            </p:calendar>                            
+
+                            <p:message for="dateBirth"/>
+                        </h:panelGroup>
+
+                    </p:panelGrid>
+
+                </p:panel>    
+
+                <p:commandButton value="Agregar Contacto" action="#{estudianteController.agregarContacto()}"  ajax="true" update="contactos" process="@this"/>
+
+                <p:dataTable id="contactos" value="#{estudianteController.current.contactos}" var="_contactoType">
+
+                    <p:column headerText="#{bundle.EditContactoTitle_tipo}" >
+
+                        <p:selectOneMenu  id="tipoContact" value="#{_contactoType.tipo}" effect="fade" required="true">  
+                            <f:selectItems value="#{typeListController.contactoTypeList()}" var="_contacto" itemLabel="#{bundle[fuelType]}" itemValue="#{_contacto}"/>  
+                        </p:selectOneMenu>
+
+                        <p:message for="tipoContact"/>
+                    </p:column> 
+
+                    <p:column headerText="#{bundle.EditContactoTitle_descripcion}" >
+                        <h:panelGroup>
+                            <p:inputTextarea id="txtArea" value="#{_contactoType.descripcion}" rows="3">
+                                <p:ajax partialSubmit="true"/>
+                            </p:inputTextarea>
+                        </h:panelGroup>
+                    </p:column> 
+                    <p:column headerText="Acciones" >
+
+                    </p:column> 
+
+                </p:dataTable>
+
+                <p:commandButton value="SAVE" action="#{estudianteController.persist()}" rendered="#{estudianteController.current.id == null}" 
+                                 update="editPanelEstudiante" icon="ui-icon ui-icon-disk"/>
+
+                <p:commandButton value="ACTUALIZAR" action="#{estudianteController.update()}" rendered="#{estudianteController.current.id != null}" 
+                                 update="editPanelEstudiante" icon="ui-icon ui-icon-disk"/>
+                <p:commandButton value="CANCELAR" action="#{estudianteController.cancelEdit()}" immediate="true" icon="ui-icon ui-icon-trash"/>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

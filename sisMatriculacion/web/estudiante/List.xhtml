@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{estudianteController.estudianteId}"/>
+        <f:event listener="#{estudianteController.findAll()}" type="preRenderView"/>
+    </f:metadata>
+
+    <ui:composition template="/layout/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEstudianteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form id="formBuscarEstudiante" prependId="false">
+                <h:panelGrid columns="3">
+                    <h:outputText value="Buscar: "></h:outputText>
+                    <p:inputText id="criterio" value="#{estudianteController.criterio}" size="25">
+                    </p:inputText>
+                    <p:commandButton value="Buscar" action="#{estudianteController.find}" ajax="true" 
+                                     icon="ui-icon ui-icon-disk" update="lista">
+
+                    </p:commandButton>
+
+                </h:panelGrid>
+                <p:dataTable id="lista" value="#{estudianteController.resultList}" var="estudiante" paginator="true" rows="10">
+                    <p:column headerText="#{bundle.ListEstudianteTitle_dni}" >
+                        <h:outputText value="#{estudiante.dni}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="#{bundle.ListEstudianteTitle_nombres}" >
+                        <h:outputText value="#{estudiante.nombres}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="#{bundle.ListEstudianteTitle_apellidos}" >
+                        <h:outputText value="#{estudiante.apellidos}"></h:outputText>
+                    </p:column>   
+                    <p:column headerText="#{bundle.ListEstudianteTitle_fechaNacimiento}" >
+                        <h:outputText value="#{estudiante.fechaNacimiento}"></h:outputText>
+                    </p:column> 
+                    <p:column headerText="#{bundle.ListEstudianteTitle_genero}" >
+                        <h:outputText value="#{estudiante.genero}"></h:outputText>
+                    </p:column> 
+
+                    <p:column headerText="#{bundle.ListEstudianteTitle_opciones}">
+                        <p:button value="#{bundle.ListEstudianteEditLink}" outcome="/estudiante/Edit" icon="ui-icon ui-icon-pencil">
+                            <f:param name="id" value="#{estudiante.id}"/>
+                        </p:button>
+                        <p:commandButton id="btnDelete" value="#{bundle.ListEstudianteDestroyLink}" icon="ui-icon ui-icon-trash"
+                                         oncomplete="confirmation.show()" type="button">
+                            <f:param name="id" value="#{estudiante.id}"/>
+                        </p:commandButton>
+                        <p:button value="Matricular" outcome="/matricula/Edit" >
+                            <f:param name="id" value="#{estudiante.id}"/>
+                        </p:button>
+                    </p:column>
+
+                </p:dataTable>
+                <p:confirmDialog id="confirmDialog" message="Esta seguro que desea eliminar al Estudiante:  #{estudianteController.current.nombres}?"  
+                                 header="Initiating destroy process" severity="alert" widgetVar="confirmation">                   
+
+                    <p:commandButton id="confirm" value="SI" update=":formBuscarEstudiante:lista" oncomplete="confirmation.hide()"  
+                                     actionListener="#{estudianteController.delete()}">
+                        <f:param name="id" value="#{estudianteController.current.id}"/>
+                    </p:commandButton>    
+
+                    <p:commandButton id="decline" value="No" onclick="confirmation.hide()" 
+                                     action="#{estudianteController.endConversation()}"
+                                     type="button">
+                       
+                    </p:commandButton>
+                        
+
+
+                </p:confirmDialog> 
+                <p:button value="Nuevo" outcome="/estudiante/Edit" 
+                          icon="ui-icon ui-icon-circle-plus">
+                    <f:param name="id" value=""/>
+
+                </p:button>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

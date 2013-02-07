@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <ui:insert name="metadata"/>
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <link href="#{request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+            <link href="#{request.contextPath}/resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+            <title>
+                <ui:insert name="Title">Default Title</ui:insert>
+            </title>
+        </h:head>
+        
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="100" resizable="true" closable="false" collapsible="true" gutter="0" styleClass="top">
+                    <ui:include src="menu.xhtml"/>
+                </p:layoutUnit>
+                <p:layoutUnit position="center" >
+                    <h:form id="messagesForm" prependId="false">
+                        <p:growl id="messagesGrowl" />
+                    </h:form>
+                    <!--p:messages id="messages" globalOnly="true"/--> 
+                    <ui:insert name="content">
+                        Content
+                    </ui:insert>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="100" resizable="true" closable="true" collapsible="true">  
+                    <a href="http://www.smartics.com" title="Smartics Software Engineering" target="_blank" >
+                        <h:graphicImage value="/img/loxageek.png" />www.smartics.com
+                    </a>
+                </p:layoutUnit>
+            </p:layout>            
+        </h:body>       
+    </f:view>
+</html>

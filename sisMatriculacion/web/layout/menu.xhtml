@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:form>
+        <h:outputText value="SISTEMA DE MATRICULACION" style="font-family: Arial; font-size: 25; font-weight: bold;"/>
+        <h1>
+            <ui:insert name="Title" >Default Title</ui:insert>
+        </h1>
+        <br />
+        <center>
+            <h:link>
+                <p:graphicImage value="/resources/cabecera.gif"/> 
+            </h:link>
+        </center>
+        <br/>
+
+        <p:toolbar rendered="#{usuarioSesion.usuario != null}">
+
+            <p:toolbarGroup align="left">
+                <p:button outcome="/index?faces-redirect=true" value="Inicio"/>
+                <p:button outcome="/matricula/List?faces-redirect=true" value="Matriculacion"/>
+                <p:button outcome="/estudiante/List?faces-redirect=true" value="Estudiantes"/>
+                <p:button outcome="/periodoAcademico/List?faces-redirect=true" value="Periodos Académicos"/>                            
+            </p:toolbarGroup>
+
+        </p:toolbar>
+    </h:form>
+</html>
+

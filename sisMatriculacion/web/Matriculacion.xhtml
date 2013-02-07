@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+
+    <h:head>
+        <title>Matriculacion</title>
+        <h:outputStylesheet name="estilos.css" library="css"/>
+    </h:head>
+    <h:body>
+        <div id="cabezera">
+            <h:outputLabel id="labelcabezera" value="SGA"/>
+        </div> 
+        <div id ="izq">
+            <h:panelGrid columns="2">
+                <f:facet name="east">
+                    <p:calendar mode="popup" navigator="true"/>
+                </f:facet>
+            </h:panelGrid>
+            <h:form>  
+                <p:growl id="messages"/>  
+                <p:menu>  
+                    <p:submenu label="Nuevo">  
+                        <p:menuitem value="Save" update="messages" icon="ui-icon-disk" />  
+                        <p:menuitem value="Update" update="messages" icon="ui-icon-arrowrefresh-1-w"/>  
+                    </p:submenu>  
+                    <p:submenu label="Non-Ajax Menuitem">  
+                        <p:menuitem value="Delete" update="messages" ajax="false" icon="ui-icon-close"/>  
+                    </p:submenu>  
+                    <p:submenu label="Navigations">  
+                        <p:menuitem value="External" icon="ui-icon-home"/>  
+                        <p:menuitem value="Internal" icon="ui-icon-star"/>  
+                    </p:submenu>  
+                </p:menu> 
+            </h:form>
+        </div>
+          
+        <div id="centro">
+
+            <h:form>
+                <p:menubar>
+                    <p:menuitem value="Inicio"/>
+                    <p:submenu label="Matricula">
+                        <p:menuitem value="Inicial"/>
+                        <p:menuitem value="Basica"/>
+                        <p:menuitem value="Bachillerato"/>
+                    </p:submenu>
+                </p:menubar>
+                <p:accordionPanel>
+                    <p:tab title="Datos de Matricula">
+                        <h:panelGrid columns="4">
+                            <h:outputLabel  value="Matricula N°: " />
+                            <p:inputText label="nummatricula" />
+                            <h:outputLabel value="Folio N°: " />
+                            <p:inputText label="numfolio"/>
+                            <h:outputLabel value="Libreta Militar: " />
+                            <p:inputText label="libretamilitar"/>
+                            <h:outputLabel value="Fecha de Matricula: "/>
+                            <p:calendar mode="popup" navigator="true"/>
+                            <h:outputLabel value="Curso: "/>
+                            <p:selectOneMenu label="menu">
+                                <f:selectItem itemLabel="Primero A"/>
+                                <f:selectItem itemLabel="Primero B"/>
+                                <f:selectItem itemLabel="Segundo A "/>
+                                <f:selectItem itemLabel="Tercero Bachillerato A"/>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Datos de Estudiante">
+                        <p:tabView>
+                            <p:tab title="Datos Personales">
+                                <h:panelGrid columns="6">
+                                    <h:outputLabel  value="Cedula: " />
+                                    <p:inputText label="cedula " />
+                                    <h:outputLabel value="Nombres: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Apellidos: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Sexo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="F. Nacimiento: "/>
+                                    <p:calendar mode="popup" navigator="true"/>
+                                    <h:outputLabel value="Edad: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Provincia: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Ciudad: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Parroquia: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Nacionalidad: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Direccion: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Telefono: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Celular: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Email: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Vive con: "/>
+                                    <p:inputText/>
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Datos Medicos">
+                                <h:panelGrid columns="6">
+                                    <h:outputLabel value="T. Sangre: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Alergias: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Enfermedades: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Hospital de Confianza: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Telefono: "/>
+                                    <p:inputText/>
+                                </h:panelGrid>  
+                            </p:tab>
+                            <p:tab title="Datos SocioEconomicos">
+                                <h:panelGrid columns="6">
+                                    <h:outputLabel value="Vive Con: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Arrienda: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Internet: "/>
+                                    <p:inputText/>
+
+                                </h:panelGrid>  
+                            </p:tab>
+                        </p:tabView>
+                    </p:tab>
+                    <p:tab title="Datos Familiares">
+                        <p:tabView>
+                            <p:tab title="Datos del Padre">
+                                <h:panelGrid columns="6">
+                                    <h:outputLabel  value="Cedula: " />
+                                    <p:inputText label="cedula " />
+                                    <h:outputLabel value="Nombres: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Apellidos: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Titulo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Profesion: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Ocupacion: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Lugar de Trabajo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Tipo de Trabajo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Telefono de Trabajo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Telefono Personal: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Celular: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Email: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Nacionalidad: "/>
+                                    <p:inputText/>
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Datos de la Madre">
+                                <h:panelGrid columns="6">
+                                    <h:outputLabel  value="Cedula: " />
+                                    <p:inputText label="cedula " />
+                                    <h:outputLabel value="Nombres: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Apellidos: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Titulo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Profesion: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Ocupacion: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Lugar de Trabajo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Tipo de Trabajo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Telefono de Trabajo: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Telefono Personal: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Celular: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Email: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Nacionalidad: "/>
+                                    <p:inputText/>
+                                </h:panelGrid>
+                            </p:tab>
+                            <p:tab title="Datos del Representante">
+                                <h:panelGrid columns="6">
+                                    <h:outputLabel  value="Cedula: " />
+                                    <p:inputText label="cedula " />
+                                    <h:outputLabel value="Nombres: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Apellidos: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Direccion: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Telefono: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Celular: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Email: "/>
+                                    <p:inputText/>
+                                    <h:outputLabel value="Parentezco: "/>
+                                    <p:inputText/>
+                                </h:panelGrid>
+                            </p:tab>
+                        </p:tabView>
+                    </p:tab>
+                </p:accordionPanel>
+            </h:form>    
+        </div>
+    </h:body>
+</html>

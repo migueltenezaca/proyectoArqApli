@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEstudianteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEstudianteLabel_dni}" for="dni" />
+                    <p:inputText id="dni" value="#{estudianteController.selected.dni}" title="#{bundle.CreateEstudianteTitle_dni}" />
+                    <h:outputLabel value="#{bundle.CreateEstudianteLabel_nombres}" for="nombres" />
+                    <p:inputText id="nombres" value="#{estudianteController.selected.nombres}" title="#{bundle.CreateEstudianteTitle_nombres}" />
+                    <h:outputLabel value="#{bundle.CreateEstudianteLabel_apellidos}" for="apellidos" />
+                    <p:inputText id="apellidos" value="#{estudianteController.selected.apellidos}" title="#{bundle.CreateEstudianteTitle_apellidos}" />
+                    <h:outputLabel value="#{bundle.CreateEstudianteLabel_fechaNacimiento}" for="fechaNacimiento" />
+                    <p:calendar id="fechaNacimiento" navigator="true" showOn="button" mode="popup" value="#{estudianteController.selected.fechaNacimiento}" title="#{bundle.CreateEstudianteTitle_fechaNacimiento}"
+                                pattern="dd/MM/yyyy">
+                    </p:calendar>
+                    <h:outputLabel value="#{bundle.CreateEstudianteLabel_genero}" for="genero" />
+                    <p:inputText id="genero" value="#{estudianteController.selected.genero}" title="#{bundle.CreateEstudianteTitle_genero}" />
+
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{estudianteController.create}" value="#{bundle.CreateEstudianteSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{estudianteController.prepareList}" value="#{bundle.CreateEstudianteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEstudianteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

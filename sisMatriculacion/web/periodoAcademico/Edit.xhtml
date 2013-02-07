@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{periodoAcademicoController.periodoAcademicoId}"/>
+    </f:metadata>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPeriodoAcademicoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form id="formEditarPeriodo" >
+                <p:panel header="#{periodoAcademicoController.current.id  != null ? bundle['ListPeriodoAcademicoEditLink'] : bundle['ListPeriodoAcademicoCreateLink']}" id="editPanelPeriodo">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="#{bundle.EditPeriodoAcademicoLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" navigator="true" showOn="button" value="#{periodoAcademicoController.current.fechaInicio}" title="#{bundle.EditPeriodoAcademicoTitle_fechaInicio}" 
+                                    pattern="dd/MM/yyyy">
+                        </p:calendar>
+                        <h:outputLabel value="#{bundle.EditPeriodoAcademicoLabel_fechaFin}" for="fechaFin" />
+                        <p:calendar id="fechaFin" navigator="true" showOn="button" value="#{periodoAcademicoController.current.fechaFin}" title="#{bundle.EditPeriodoAcademicoTitle_fechaFin}" 
+                                    pattern="dd/MM/yyyy">
+                        </p:calendar>
+                    </h:panelGrid>
+                    <p:commandButton value="SAVE" action="#{periodoAcademicoController.persist()}" rendered="#{periodoAcademicoController.current.id == null}" 
+                                     update="editPanelPeriodo" icon="ui-icon ui-icon-disk"/>
+
+                    <p:commandButton value="ACTUALIZAR" action="#{periodoAcademicoController.update()}" rendered="#{periodoAcademicoController.current.id != null}" 
+                                     update="editPanelPeriodo" icon="ui-icon ui-icon-disk"/>
+                    <p:commandButton value="CANCELAR" action="#{periodoAcademicoController.cancelEdit()}" immediate="true" icon="ui-icon ui-icon-trash"/>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

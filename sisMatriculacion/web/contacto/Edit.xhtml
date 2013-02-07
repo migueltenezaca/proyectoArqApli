@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditContactoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditContactoLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{contactoController.selected.id}" title="#{bundle.EditContactoTitle_id}" />
+                    <h:outputLabel value="#{bundle.EditContactoLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{contactoController.selected.tipo}" title="#{bundle.EditContactoTitle_tipo}" />
+                    <h:outputLabel value="#{bundle.EditContactoLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{contactoController.selected.descripcion}" title="#{bundle.EditContactoTitle_descripcion}" />
+                    <h:outputLabel value="#{bundle.EditContactoLabel_estudiante}" for="estudiante" />
+                    <h:selectOneMenu id="estudiante" value="#{contactoController.selected.estudiante}" title="#{bundle.EditContactoTitle_estudiante}" >
+                        <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{contactoController.update}" value="#{bundle.EditContactoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditContactoViewLink}"/>
+                <br />
+                <h:commandLink action="#{contactoController.prepareList}" value="#{bundle.EditContactoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditContactoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

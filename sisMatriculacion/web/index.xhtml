@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                
+                template="/layout/template.xhtml">
+
+    <ui:define name="title">
+        <h:outputText value="BIENVENIDOS A SISTEMA DE MATRICULACION APP JEE6"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form >            
+            <h:link outcome="/contacto/List" value="Todos los Contactos"/>
+            <br />
+            <h:link outcome="/periodoAcademico/List" value="Todos los Periodos Académicos"/>
+            <br />
+            <h:link outcome="/matricula/List" value="Todas las Matriculas"/>
+            <br />
+            <h:link outcome="/periodoAcademico/List" value="Todos los Periodos Academicos"/>           
+            <br />
+           <h:link outcome="/login" value="login"/>
+            <br />
+        </h:form>
+    </ui:define>
+</ui:composition>

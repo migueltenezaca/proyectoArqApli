@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewContactoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewContactoLabel_id}"/>
+                    <h:outputText value="#{contactoController.selected.id}" title="#{bundle.ViewContactoTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewContactoLabel_tipo}"/>
+                    <h:outputText value="#{contactoController.selected.tipo}" title="#{bundle.ViewContactoTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewContactoLabel_descripcion}"/>
+                    <h:outputText value="#{contactoController.selected.descripcion}" title="#{bundle.ViewContactoTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewContactoLabel_estudiante}"/>
+                    <h:outputText value="#{contactoController.selected.estudiante}" title="#{bundle.ViewContactoTitle_estudiante}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{contactoController.destroyAndView}" value="#{bundle.ViewContactoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewContactoEditLink}"/>
+                <br />
+                <h:commandLink action="#{contactoController.prepareCreate}" value="#{bundle.ViewContactoCreateLink}" />
+                <br />
+                <h:commandLink action="#{contactoController.prepareList}" value="#{bundle.ViewContactoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewContactoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
